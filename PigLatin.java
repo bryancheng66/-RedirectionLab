@@ -39,8 +39,32 @@ public class PigLatin {
 		return result;
 	}
 
+	public static String pigLatinBest(String s){
+		String result = "";
+		String punct = "";
+
+		if (!Character.isLetter(s.charAt(0))){
+			result += s;
+		} else {
+			if (!Character.isLetter(s.charAt(s.length()-1)) && !Character.isDigit(s.charAt(s.length()-1))){
+				punct = s.substring(s.length()-1);
+				s = s.substring(0, s.length()-1);
+			}
+			
+			if (startsString(s, vowels)){
+				result += s + "hay";
+			} else if (startsString(s, digraphs)){
+				result += s.substring(2) + s.substring(0,2) + "ay";
+			} else {
+				result += s.substring(1) + s.substring(0,1) + "ay";
+			}
+		}
+		return result + punct;
+	}
+
 	public static void main(String[] Args){
 		System.out.println(pigLatinSimple(Args[0]));
 		System.out.println(pigLatin(Args[1]));
+		System.out.println(pigLatinBest(Args[2]));
 	}
 }
