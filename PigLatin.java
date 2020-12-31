@@ -1,4 +1,5 @@
 import java.util.Arrays;
+import java.util.Scanner;
 
 public class PigLatin {
 	public static String[] vowels = {"a", "e", "i", "o", "u"};
@@ -23,7 +24,7 @@ public class PigLatin {
 		} else {
 			result += s.substring(1) + s.substring(0,1) + "ay";
 		}
-		return result;
+		return result.toLowerCase();
 	}
 
 	public static String pigLatin(String s){
@@ -36,7 +37,7 @@ public class PigLatin {
 		} else {
 			result += s.substring(1) + s.substring(0,1) + "ay";
 		}
-		return result;
+		return result.toLowerCase();
 	}
 
 	public static String pigLatinBest(String s){
@@ -59,12 +60,21 @@ public class PigLatin {
 				result += s.substring(1) + s.substring(0,1) + "ay";
 			}
 		}
-		return result + punct;
+		return (result + punct).toLowerCase();
 	}
 
 	public static void main(String[] Args){
-		System.out.println(pigLatinSimple(Args[0]));
-		System.out.println(pigLatin(Args[1]));
-		System.out.println(pigLatinBest(Args[2]));
+		Scanner inputFile = new Scanner(System.in);
+		while (inputFile.hasNextLine()){
+			Scanner currentLine = new Scanner(inputFile.nextLine());
+			String outputLine = "";
+			while (currentLine.hasNext()){
+				outputLine += pigLatinBest(currentLine.next());
+				if (currentLine.hasNext()){
+					outputLine += " ";
+				}
+			}
+			System.out.println(outputLine);
+		}
 	}
 }
