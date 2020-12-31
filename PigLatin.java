@@ -8,7 +8,7 @@ public class PigLatin {
 
 	public static boolean startsString(String s, String[] array){
 		boolean result = false;
-		for (int i = 0; !result && i < vowels.length; i++){
+		for (int i = 0; !result && i < array.length; i++){
 			if (array[i].equals(s.substring(0, array[0].length()))){
 				result = true;
 			}
@@ -47,6 +47,7 @@ public class PigLatin {
 		if (!Character.isLetter(s.charAt(0))){
 			result += s;
 		} else {
+			//check if last char is punctuation
 			if (!Character.isLetter(s.charAt(s.length()-1)) && !Character.isDigit(s.charAt(s.length()-1))){
 				punct = s.substring(s.length()-1);
 				s = s.substring(0, s.length()-1);
@@ -69,7 +70,7 @@ public class PigLatin {
 			Scanner currentLine = new Scanner(inputFile.nextLine());
 			String outputLine = "";
 			while (currentLine.hasNext()){
-				outputLine += pigLatinBest(currentLine.next());
+				outputLine += pigLatinBest(currentLine.next().toLowerCase());
 				if (currentLine.hasNext()){
 					outputLine += " ";
 				}
